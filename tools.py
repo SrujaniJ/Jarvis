@@ -30,6 +30,15 @@ def generate_image(parameters):
     url = f"https://image.pollinations.ai/prompt/{requests.utils.quote(prompt)}"
     return url
 
+
+def save_to_txt(parameters):
+    print(f"DEBUG: save_to_txt called with {parameters}")
+    filename = parameters.get('filename')
+    content = parameters.get('content')
+    with open(filename, 'a', encoding='utf-8') as file:
+        file.write(content + '\n')
+    return f'Saved to {filename}'
+
 client_tools = ClientTools()
 client_tools.register('search_web', search_web)
 client_tools.register('save_to_txt', save_to_txt)
